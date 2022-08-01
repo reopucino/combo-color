@@ -1,0 +1,17 @@
+[bootstrap]
+main_collection = /game.collectionc
+
+[script]
+shared_state = 1
+
+[display]
+width = 540
+height = 960
+
+[android]
+input_method = HiddenInputField
+
+[project]
+title = duplicate-line-wizard-sally
+version = 0.1
+
