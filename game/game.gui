@@ -1,11 +1,11 @@
-script: "/game.gui_script"
+script: "/game/game.gui_script"
 fonts {
   name: "main"
   font: "/main/main.font"
 }
 textures {
   name: "game"
-  texture: "/game.atlas"
+  texture: "/game/ui.atlas"
 }
 background_color {
   x: 0.0
