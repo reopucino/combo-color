@@ -4,19 +4,8 @@
 -- in any script using the functions.
 local M = {}
 
-
-function M.new(px, py, _width, _height)
-	local state = {
-		x = px
-		y = py
-		width = _width
-		height = _height
-	}
-	return state
-end
-
-function M.get_rect(_state)
-	return _state.state
+function M.collide_rect(x, y, rx, ry, width, height)
+	return x > rx and x < rx + width and y > ry and y < ry + height
 end
 
 return M

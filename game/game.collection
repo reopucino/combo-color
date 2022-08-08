@@ -131,7 +131,7 @@ embedded_instances {
   }
 }
 embedded_instances {
-  id: "enemy1"
+  id: "enemy3"
   data: "components {\n"
   "  id: \"enemy\"\n"
   "  component: \"/game/objects/enemy.script\"\n"
@@ -145,6 +145,11 @@ embedded_instances {
   "    y: 0.0\n"
   "    z: 0.0\n"
   "    w: 1.0\n"
+  "  }\n"
+  "  properties {\n"
+  "    id: \"start_animate\"\n"
+  "    value: \"false\"\n"
+  "    type: PROPERTY_TYPE_BOOLEAN\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"
@@ -169,8 +174,8 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 202.0
-    y: 1015.0
+    x: 378.0
+    y: 597.0
     z: 0.0
   }
   rotation {
@@ -186,10 +191,10 @@ embedded_instances {
   }
 }
 embedded_instances {
-  id: "enemy2"
+  id: "game_object_factory"
   data: "components {\n"
   "  id: \"enemy\"\n"
-  "  component: \"/game/objects/enemy.script\"\n"
+  "  component: \"/game/game.script\"\n"
   "  position {\n"
   "    x: 0.0\n"
   "    y: 0.0\n"
@@ -203,12 +208,10 @@ embedded_instances {
   "  }\n"
   "}\n"
   "embedded_components {\n"
-  "  id: \"sprite\"\n"
-  "  type: \"sprite\"\n"
-  "  data: \"tile_set: \\\"/game/game.atlas\\\"\\n"
-  "default_animation: \\\"enemyFloating_1\\\"\\n"
-  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
+  "  id: \"factory_enemy\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/game/objects/enemy.go\\\"\\n"
+  "load_dynamically: false\\n"
   "\"\n"
   "  position {\n"
   "    x: 0.0\n"
@@ -224,8 +227,8 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 566.0
-    y: 370.0
+    x: 0.0
+    y: 0.0
     z: 0.0
   }
   rotation {

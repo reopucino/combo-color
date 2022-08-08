@@ -1,16 +1,4 @@
 images {
-  image: "/assets/png/cirlce.png"
-  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-}
-images {
-  image: "/assets/png/down.png"
-  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-}
-images {
-  image: "/assets/png/kotak.png"
-  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-}
-images {
   image: "/assets/png/coin.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
@@ -21,6 +9,25 @@ images {
 images {
   image: "/assets/png/pause.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+animations {
+  id: "target"
+  images {
+    image: "/assets/png/cirlce.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/png/down.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/png/kotak.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  playback: PLAYBACK_NONE
+  fps: 3
+  flip_horizontal: 0
+  flip_vertical: 0
 }
 margin: 1
 extrude_borders: 2

@@ -46,7 +46,7 @@ nodes {
   }
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
-  texture: "game/kotak"
+  texture: "game/target"
   id: "box"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_BOTTOM
@@ -101,7 +101,7 @@ nodes {
   }
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
-  texture: "game/down"
+  texture: "game/target"
   id: "down"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_BOTTOM
@@ -156,7 +156,7 @@ nodes {
   }
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
-  texture: "game/cirlce"
+  texture: "game/target"
   id: "circle"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_BOTTOM
