@@ -6,6 +6,7 @@ local drawdebug = require("debug-draw.debug-draw")
 go.property("rect_width", 40)
 go.property("rect_height", 40)
 go.property("start_animate", true)
+go.property("callobject", false)
 
 local overlap = { x = 20, y=20}
 
@@ -24,6 +25,14 @@ local function stop_animate(self)
 	
 end
 
+local function create_spell_break()
+	local spell = factory.create("#factory_spell", nil, nil)
+	
+	--spell.set_parent(go.get("."))
+	--local s = vmath.vector3(0.1, 0.1, 0.1)
+	--spell.set_scale(s)
+end
+
 function init(self)
 	-- add props
 	self.time_move = 5
@@ -32,7 +41,10 @@ function init(self)
 	if(self.start_animate) then
 		move_to_target(self, self.time_move)
 	end
-	
+
+	if(self.callobject) then
+		create_spell_break()
+	end
 	
 	msg.post(".", "acquire_input_focus")
 end

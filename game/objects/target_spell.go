@@ -1,8 +1,8 @@
 embedded_components {
   id: "sprite"
   type: "sprite"
-  data: "tile_set: \"\"\n"
-  "default_animation: \"\"\n"
+  data: "tile_set: \"/game/ui.atlas\"\n"
+  "default_animation: \"target\"\n"
   "material: \"/builtins/materials/sprite.material\"\n"
   "blend_mode: BLEND_MODE_ALPHA\n"
   ""
