@@ -24,7 +24,7 @@ function update(self, dt)
 	self.spawn_timer = self.spawn_timer - dt
 	if self.spawn_timer < 0 then
 		self.spawn_timer = 1
-		factory.create("#factory_enemy", random_position(), nil, {start_animate=false, callobject=true})
+		factory.create("#factory_enemy", random_position(), nil, {start_animate=false})
 	end
 	
 end

@@ -6,7 +6,6 @@ local drawdebug = require("debug-draw.debug-draw")
 go.property("rect_width", 40)
 go.property("rect_height", 40)
 go.property("start_animate", true)
-go.property("callobject", false)
 
 local overlap = { x = 20, y=20}
 
@@ -22,12 +21,45 @@ local function stop_animate(self)
 	timer.delay(0.5, false, function()
 		move_to_target(self, self.time_move)
 	end)
-	
+end
+
+local function auto_scale_sprites()
+	local v3 = vmath.vector3(0.1, 0.1, 0.1)
+	for i = 1, 4 do
+		-- do thing
+		go.set("#target" .. i, "scale", v3)
+		go.set("#target" .. i, "cursor", i/4)
+	end
+end
+
+function inactive_sprite(deactive_from)
+	for i = 1, 4 do
+		-- do thing
+		if i > deactive_from then
+			msg.post("#target"..i,"disable")
+		end
+	end
+
+	-- go.set("#target1", "position.x", 0)
+	print(go.get("#target1", "position"))
+	--[[ masih belum bisa
+	local length = 33
+	local start_j = length * (deactive_from-1)
+	local mid =  - (start_j / deactive_from)
+	local v3 = vmath.vector3(0.1, 0.1, 0.1)
+	for j = 1, deactive_from do
+		v3.x = mid * j
+		go.set("#target" .. j , "position", v3)
+	end
+	]] --
 end
 
 local function create_spell_break()
-	local spell = factory.create("#factory_spell", nil, nil)
-	
+	local id_spell = factory.create("#factory_spell", nil, nil)
+	go.set_scale(0.1, id_spell)
+	go.set_position(vmath.vector3(0, 50, 0), id_spell)
+	go.set_parent(id_spell, go.get_id())
+	-- print(go.get_parent(id_spell))
 	--spell.set_parent(go.get("."))
 	--local s = vmath.vector3(0.1, 0.1, 0.1)
 	--spell.set_scale(s)
@@ -42,11 +74,10 @@ function init(self)
 		move_to_target(self, self.time_move)
 	end
 
-	if(self.callobject) then
-		create_spell_break()
-	end
+	create_spell_break()
 	
-	msg.post(".", "acquire_input_focus")
+	--local r  = math.random(1, 4)
+	--inactive_sprite(r)
 end
 
 function on_message(self, message_id, message, sender)
@@ -57,7 +88,6 @@ function update(self, dt)
 	local pos = go.get_position(".")
 	local afteroverlap = {x = pos.x - overlap.x, y = pos.y-overlap.y}
 	drawdebug.rect(afteroverlap.x, afteroverlap.x+self.rect_width, afteroverlap.y,afteroverlap.y+self.rect_height, "red")
-
 	if self.reduce_timer then
 		self.time_move = self.time_move - dt
 	end
