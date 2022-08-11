@@ -1,14 +1,7 @@
-local function random_position()
-	local w = sys.get_config("display.width")
-	local h = sys.get_config("display.height")
-	return vmath.vector3(math.random(1, w), math.random(1, h), 0)
-end
-
 function init(self)
 	-- Add initialization code here
 	-- Learn more: https://defold.com/manuals/script/
 	-- Remove this function if not needed
-	self.spawn_timer = 1
 end
 
 function final(self)
@@ -21,12 +14,6 @@ function update(self, dt)
 	-- Add update code here
 	-- Learn more: https://defold.com/manuals/script/
 	-- Remove this function if not needed
-	self.spawn_timer = self.spawn_timer - dt
-	if self.spawn_timer < 0 then
-		self.spawn_timer = 2
-		factory.create("#factory_enemy", random_position(), nil, {start_animate=true})
-	end
-	
 end
 
 function fixed_update(self, dt)
@@ -39,6 +26,11 @@ function on_message(self, message_id, message, sender)
 	-- Add message-handling code here
 	-- Learn more: https://defold.com/manuals/message-passing/
 	-- Remove this function if not needed
+	if message_id == hash("check") then
+		-- print(go.get_parent())
+	elseif message_id == hash("parent_delete") then
+		go.delete()
+	end
 end
 
 function on_input(self, action_id, action)
