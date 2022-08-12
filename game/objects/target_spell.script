@@ -36,6 +36,8 @@ function on_message(self, message_id, message, sender)
 		go.set("#sprite", "cursor", c)
 	elseif message_id == hash("parent_delete") then
 		go.delete()
+	elseif message_id == hash("disable_sprite")then 
+		msg.post("#sprite", "disable")
 	end
 end
 

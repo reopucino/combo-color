@@ -1,6 +1,10 @@
 local col = require("collider")
 local drawdebug = require("debug-draw.debug-draw")
 
+local CIRCLE = 1
+local DOWN = 2
+local KOTAK = 3
+
 --properti
 go.property("rect_width", 40)
 go.property("rect_height", 40)
@@ -20,7 +24,6 @@ local function move_to_target(self, time_move)
 	local target = go.get_position("player")
 	go.animate(".", "position", go.PLAYBACK_ONCE_FORWARD, target, go.EASING_LINEAR, time_move, 0, function(self) 
 		go.delete()
-		
 	end)
 	self.reduce_timer = true
 end
@@ -58,6 +61,7 @@ function init(self)
 	self.reduce_timer = false
 	self.child = {}
 	self.data_child = {}
+	self.child_number = 1
 
 	if(self.start_animate) then
 		move_to_target(self, self.time_move)
@@ -70,7 +74,23 @@ end
 function on_message(self, message_id, message, sender)
 	-- Learn more: https://defold.com/manuals/message-passing/
 	if message_id == hash("check_parameter")then
-		print("get message from boss")
+		-- print("get message from boss")
+		local first_data_enemy = self.data_child[1]
+		if first_data_enemy == message.parameter then
+			table.remove(self.data_child, 1)
+			local instance_child = self.child[self.child_number]
+			self.child_number = self.child_number + 1
+			msg.post(instance_child, "disable_sprite")
+		end
+
+		if (#self.data_child)<1 then
+			go.delete()
+		end
+		--[[
+		for i, v in ipairs(self.data_child) do
+			print(v)
+		end
+		]]--
 	end
 end
 
@@ -107,7 +127,8 @@ end
 
 function final(self)
 	-- report finalization
-	msg.post("/game_object_factory#enemy", "boss_im_death")
+	local _id = go.get_id()
+	msg.post("/game_object_factory#enemy", "boss_im_death", {sender_id = _id})
 	for i,v in ipairs(self.child) do
 		msg.post(v, "parent_delete")
 	end

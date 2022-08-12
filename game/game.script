@@ -4,6 +4,20 @@ local function random_position()
 	return vmath.vector3(math.random(1, w), math.random(1, h), 0)
 end
 
+local function remove_fromlist(self, sender_id)
+	--[[
+	print(sender)
+	local p = go.get_id("" .. sender)
+	print(p) --print hash string?? not sure
+	]]--
+	for i,v in ipairs(self.all_enemy) do
+		if v == sender_id then
+			table.remove(self.all_enemy, i)
+			break
+		end
+	end
+end
+
 function init(self)
 	-- Add initialization code here
 	-- Learn more: https://defold.com/manuals/script/
@@ -42,12 +56,14 @@ function on_message(self, message_id, message, sender)
 	-- Learn more: https://defold.com/manuals/message-passing/
 	-- Remove this function if not needed
 	if message_id == hash("from_gui")then
-		print("from gui " .. message.parameter)
+		print("from gui " .. message.string_parameter)
 		for i,v in ipairs(self.all_enemy) do
-			msg.post(v, "check_parameter")
+			msg.post(v, "check_parameter", {parameter = message.parameter})
 		end
 	elseif message_id == hash("boss_im_death")then
-		print("okey will remove from my list")
+		local _sender_id = message.sender_id
+		remove_fromlist(self, _sender_id)
+		-- print("okey will remove from my list")
 	end
 end
 
