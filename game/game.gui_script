@@ -10,11 +10,14 @@ function on_input(self, action_id, action)
 		if gui.pick_node(gui.get_node("pause"), action.x, action.y) then 
 			print("pause click")
 		elseif gui.pick_node(gui.get_node("box"), action.x, action.y) then 
-			print("box")
+			-- print("kotak")
+			msg.post("/game_object_factory#enemy", "from_gui", {parameter = "kotak"})
 		elseif gui.pick_node(gui.get_node("down"), action.x, action.y) then 
-			print("down")
+			-- print("down")
+			msg.post("/game_object_factory#enemy", "from_gui", {parameter = "down"})
 		elseif gui.pick_node(gui.get_node("circle"), action.x, action.y) then 
-			print("cirle")
+			-- print("cirle")
+			msg.post("/game_object_factory#enemy", "from_gui", {parameter = "circle"})
 		end
 	end
 end

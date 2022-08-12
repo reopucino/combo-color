@@ -1,7 +1,11 @@
+go.property("c_for_cursor", 1)
+
 function init(self)
 	-- Add initialization code here
 	-- Learn more: https://defold.com/manuals/script/
 	-- Remove this function if not needed
+	--msg.post(".", "change_spell_image", {send_info=self.c_for_cursor})
+	go.set("#sprite", "cursor", self.c_for_cursor)
 end
 
 function final(self)
@@ -26,8 +30,10 @@ function on_message(self, message_id, message, sender)
 	-- Add message-handling code here
 	-- Learn more: https://defold.com/manuals/message-passing/
 	-- Remove this function if not needed
-	if message_id == hash("check") then
+	if message_id == hash("change_spell_image") then
 		-- print(go.get_parent())
+		local c = message.send_info * 0.33
+		go.set("#sprite", "cursor", c)
 	elseif message_id == hash("parent_delete") then
 		go.delete()
 	end
